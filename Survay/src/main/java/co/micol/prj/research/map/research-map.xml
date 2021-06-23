@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.micol.prj.research.map.ResearchMap">
+	<insert id="resarchInsert">
+	
+	</insert>
+	
+	<update id="resarchUpdate">
+	
+	</update>
+	
+	<select id="researchSelectList" resultType="co.micol.prj.research.vo.ResearchVO">
+		select * from research
+	</select>
+</mapper>

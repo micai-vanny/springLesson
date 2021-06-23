@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.micol.prj.research.map.ResearchResponseMap">
+
+<insert id="researchResponseInsert">
+	<selectKey keyProperty="responseid" resultType="int" order="BEFORE">
+		select rr_seq.nextval from dual
+	</selectKey>
+	
+	insert into researchresponse(responseId, qId, qOrder, qResult) values
+	<foreach collection="list" item="item">
+		(#{responseid}, #{item.qId}, #{item.qOrder}, #{item.qResult})
+	</foreach>
+</insert>
+</mapper>
