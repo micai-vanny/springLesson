@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.micol.prj.research.service.ResearchQuestionService;
@@ -37,7 +38,7 @@ public class ResearchController {
 		return "research/researchList";
 	}
 	
-	@RequestMapping("researchSelect.do")
+	@PostMapping("researchSelect.do")
 	public String researchSelect(ResearchVO vo, Model model) {
 		model.addAttribute("vo", dao.researchSelect(vo));
 		return "research/researchSelect";
@@ -67,21 +68,35 @@ public class ResearchController {
 		for(int i= 1; i <= qOrder.length; i++) {
 			vo = new ResearchResponseVO();
 			qResult = req.getParameterValues("qResult["+i+"]");
+			String result = "";
+			StringBuilder sb = new StringBuilder();
 			for(String str : qResult) {
-				System.out.println(i+str);
+//				System.out.println(i+str);
+				sb.append(str);
+				if(sb.length() > 0){
+					sb.append(',');
+			    }
+//				sb.deleteCharAt(0);
+			    str = sb.toString();
+//				str = String.join(",",str);
+				result += str;
+			    System.out.println(result);
 			}
+			vo.setqOrder(Integer.parseInt(qOrder[i-1]));
+			vo.setqId(Integer.parseInt(qOrder[i-1]));
+			vo.setqResult(result);
+			list.add(vo);
 		}
+		int n = responseDao.researchResponseInsert(list);
 		
-//		int n = responseDao.researchResponseInsert(list);
-//		
-//		String message;
-//		
-//		if(n > 0)
-//			message="설문이 정상 등록 되었습니다.";
-//		else
-//			message="설문 등록에 실패하였습니다.";
-//		model.addAttribute("str", message);
-//		return "research/researchAppendwrite";
-		return null;
+		String message;
+		
+		if(n > 0)
+			message="설문이 정상 등록 되었습니다.";
+		else
+			message="설문 등록에 실패하였습니다.";
+		model.addAttribute("str", message);
+		return "research/researchAppendwrite";
+//			return null;
 	}
 }

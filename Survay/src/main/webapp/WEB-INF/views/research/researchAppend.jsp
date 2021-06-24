@@ -7,6 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>설문조사지</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	function click() {
+		var list = new Array();
+			   $("input[name='qResult[]']").each(function(index, item){
+			   list.push($(item).val());
+				console.log(result);
+		   });
+			   alert(list);
+			   $("#resultList").val(list); 
+	}
+	
+	
+</script>
 </head>
 <body>
 <div align="center">
@@ -20,11 +34,12 @@
 					<tr>
 						<td colspan="2" width="700" height="200" align="center">
 							<h1>${researchTitle.title }</h1>
+							<h1>${researchTitle.id }</h1>
 							<h4>종료일자 : ${researchTitle.edate }</h4>
 						</td>
 					</tr>
 					<c:forEach items="${qlists }" var="q">
-						<input type="hidden" id="id" name="id" value="${q.qId }">
+						<input type="hidden" id="resultList" name="result[]" value="">
 						<input type="hidden" id="qOrder" name="qOrder" value="${q.qOrder }">
 						<tr>
 							<th width="50">문항 ${q.qOrder }</th>
@@ -65,7 +80,7 @@
 			</div>
 			<br/>
 			<div align="center">
-				<input type="submit" value="결과제출"">&nbsp;&nbsp;
+				<input type="submit" value="결과제출" onclick='click()'>&nbsp;&nbsp;
 				<input type="reset" value="취소">
 			</div>
 		</form>

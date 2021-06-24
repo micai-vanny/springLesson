@@ -7,8 +7,8 @@
 		select rr_seq.nextval from dual
 	</selectKey>
 	
-	insert into researchresponse(responseId, qId, qOrder, qResult) values
-	<foreach collection="list" item="item">
+	<foreach collection="list" item="item" separator=" " open="INSERT ALL" close="select * from dual">
+		into researchresponse(responseId, qId, qOrder, qResult) values
 		(#{responseid}, #{item.qId}, #{item.qOrder}, #{item.qResult})
 	</foreach>
 </insert>
