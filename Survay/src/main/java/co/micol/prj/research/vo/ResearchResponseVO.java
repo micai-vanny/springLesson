@@ -1,7 +1,7 @@
 package co.micol.prj.research.vo;
 
 public class ResearchResponseVO {
-	private int responseId;
+//	private int responseId;
 	private int qId;
 	private int qOrder;
 	private String qResult;
@@ -9,13 +9,13 @@ public class ResearchResponseVO {
 	public ResearchResponseVO() {
 	}
 
-	public int getResponseId() {
-		return responseId;
-	}
-
-	public void setResponseId(int responseId) {
-		this.responseId = responseId;
-	}
+//	public int getResponseId() {
+//		return responseId;
+//	}
+//
+//	public void setResponseId(int responseId) {
+//		this.responseId = responseId;
+//	}
 
 	public int getqId() {
 		return qId;

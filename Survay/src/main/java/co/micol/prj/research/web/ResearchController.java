@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +20,7 @@ import co.micol.prj.research.service.ResearchServie;
 import co.micol.prj.research.vo.ResearchQuestionVO;
 import co.micol.prj.research.vo.ResearchResponseVO;
 import co.micol.prj.research.vo.ResearchVO;
+import co.micol.prj.research.vo.ResultVO;
 
 @Controller
 public class ResearchController {
@@ -39,8 +41,8 @@ public class ResearchController {
 	}
 	
 	@PostMapping("researchSelect.do")
-	public String researchSelect(ResearchVO vo, Model model) {
-		model.addAttribute("vo", dao.researchSelect(vo));
+	public String researchSelect(@ModelAttribute("lists") ResultVO vo, Model model) {
+		model.addAttribute("vo", dao.researchSelectList());
 		return "research/researchSelect";
 	}
 	

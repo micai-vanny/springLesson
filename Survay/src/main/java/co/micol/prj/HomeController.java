@@ -45,7 +45,6 @@ public class HomeController {
 
 		String viewPage = request.getServletPath();
 	    viewPage = viewPage.substring(0, viewPage.lastIndexOf(".do"));
-	      
 		return viewPage;
 	}
 	
